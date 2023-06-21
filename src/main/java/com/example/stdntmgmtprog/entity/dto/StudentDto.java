@@ -8,7 +8,6 @@ import lombok.*;
 @Data
 @Builder
 public class StudentDto {
-//    private Integer id;
 
     private String name;
 
@@ -24,7 +23,6 @@ public class StudentDto {
 
 
     public StudentDto(Student student){
-//        this.id = student.getId();
         this.name = student.getName();
         this.birth = student.getBirth();
         this.s_grade = student.getS_grade();
@@ -35,7 +33,6 @@ public class StudentDto {
 
     public Student dtoToEntity(){
          return Student.builder()
-//                .id(id)
                 .name(name)
                 .birth(birth)
                 .s_grade(s_grade)

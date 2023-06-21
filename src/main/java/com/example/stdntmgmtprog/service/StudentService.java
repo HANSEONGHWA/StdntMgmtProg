@@ -14,7 +14,6 @@ public class StudentService {
 
     public void create(StudentDto dto) {
         Student std = Student.builder()
-//                .id(dto.getId())
                 .birth(dto.getBirth())
                 .name(dto.getName())
                 .s_grade(dto.getS_grade())
