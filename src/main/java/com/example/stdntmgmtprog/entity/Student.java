@@ -1,10 +1,14 @@
 package com.example.stdntmgmtprog.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
+import jdk.jshell.Snippet;
+import lombok.*;
 
 @Entity
 @Getter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -12,22 +16,19 @@ public class Student {
 
     private String name;
 
-    private Integer s_grade;
+    private String birth;
 
-    private Integer s_ban;
+    private String s_grade;
+
+    private String s_ban;
 
     private Integer s_number;
 
     private String yearAdmission;
 
-    @ManyToMany
-    private Teacher homeroomTeacher;
+//    @ManyToMany
+//    private Teacher t_id;
 
     private String idPhoto;
-
-
-
-
-
 
 }
