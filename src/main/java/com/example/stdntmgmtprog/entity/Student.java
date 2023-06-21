@@ -1,7 +1,6 @@
 package com.example.stdntmgmtprog.entity;
 
 import jakarta.persistence.*;
-import jdk.jshell.Snippet;
 import lombok.*;
 
 @Entity

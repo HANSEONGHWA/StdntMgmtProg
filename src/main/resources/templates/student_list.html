@@ -55,8 +55,12 @@
                 <th>이름</th>
             </tr>
             <tbody>
-            <tr>
-
+            <tr th:each="student, loop: ${students}">
+                <td th:text="${loop.count}"></td>
+                <td th:text="${student.yearAdmission}"></td>
+                <td th:text="${student.s_grade}"></td>
+                <td th:text="${student.s_ban}"></td>
+                <td th:text="${student.name}"></td>
             </tr>
             </tbody>
 
