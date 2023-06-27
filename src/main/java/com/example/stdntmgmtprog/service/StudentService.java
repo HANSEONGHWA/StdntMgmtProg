@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+import java.util.zip.DataFormatException;
 
 @Service
 @RequiredArgsConstructor
@@ -17,7 +19,7 @@ public class StudentService {
     /**
      * 학생 list
      */
-    public List<Student> getList(){
+    public List<Student> getList() {
         return studentRepository.findAll();
     }
 
@@ -33,6 +35,35 @@ public class StudentService {
                 .s_number(dto.getS_number())
                 .yearAdmission(dto.getYearAdmission())
                 .build();
+        studentRepository.save(std);
+    }
+
+    /**
+     *
+     */
+    public Student getStudent(Integer id) throws DataFormatException {
+        Optional<Student> student = studentRepository.findById(id);
+        if (student.isPresent()) {
+            return student.get();
+        } else {
+            throw new DataFormatException("student not found");
+        }
+    }
+
+    /**
+     * 학생수정
+     */
+    public void modify(Integer id, StudentDto dto) {
+        Student std = Student.builder()
+                .id(id)
+                .birth(dto.getBirth())
+                .s_grade(dto.getS_grade())
+                .s_ban(dto.getS_ban())
+                .s_number(dto.getS_number())
+                .name(dto.getName())
+                .yearAdmission(dto.getYearAdmission())
+                .build();
+
         studentRepository.save(std);
 
     }

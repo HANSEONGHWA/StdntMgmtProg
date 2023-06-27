@@ -3,13 +3,13 @@ package com.example.stdntmgmtprog.controller;
 import com.example.stdntmgmtprog.entity.Student;
 import com.example.stdntmgmtprog.entity.dto.StudentDto;
 import com.example.stdntmgmtprog.service.StudentService;
-import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.zip.DataFormatException;
 
 @Controller
 @RequiredArgsConstructor
@@ -37,7 +37,7 @@ public class StudentController {
      */
     @GetMapping("/create")
     public String studentCreate(){
-        return "student_form";
+        return "student_addForm";
   }
     @PostMapping("/create")
     public String studentCreate(@ModelAttribute StudentDto dto){
@@ -45,5 +45,20 @@ public class StudentController {
         return "redirect:/student/list";
     }
 
+    /**
+     * 학생정보 수정
+     */
+    @GetMapping("/modify/{id}")
+    public String detail(@PathVariable("id") Integer id, Model model) throws DataFormatException {
+        Student student = studentService.getStudent(id);
+        model.addAttribute("student", student);
+        return "student_form";
+    }
+
+    @PostMapping("/modify/{id}")
+    public String modify(@PathVariable("id") Integer id, @ModelAttribute StudentDto dto ) throws DataFormatException {
+        studentService.modify(id,dto);
+        return "redirect:/student/list";
+    }
 
 }

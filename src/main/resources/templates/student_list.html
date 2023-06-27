@@ -54,21 +54,21 @@
                 <th>반</th>
                 <th>이름</th>
             </tr>
+            </thead>
+
             <tbody>
             <tr class="text-center" th:each="student, loop: ${students}">
                 <td th:text="${loop.count}"></td>
                 <td th:text="${student.yearAdmission}"></td>
                 <td th:text="${student.s_grade}"></td>
                 <td th:text="${student.s_ban}"></td>
-                <td th:text="${student.name}"></td>
+                <td><a th:href="@{|/student/modify/${student.id}|}" th:text="${student.name}"></a> </td>
             </tr>
             </tbody>
-
-            </thead>
         </table>
 
-
     </div>
+</div>
 </body>
 
 </html>
