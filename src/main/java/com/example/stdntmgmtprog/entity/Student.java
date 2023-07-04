@@ -28,6 +28,11 @@ public class Student {
 //    @ManyToMany
 //    private Teacher t_id;
 
-    private String idPhoto;
+    private String fileName;
+
+    private String fileOriName;
+
+    private String fileUrl;
+
 
 }

@@ -7,42 +7,62 @@
     <title>학생상세정보</title>
 </head>
 <body>
-<div class="container my-3" >
+<div class="container my-3">
     <h5 class="my-3 border-bottom pb-2">학생상세정보</h5>
-    <form method="post" th:action="@{|/student/modify/${student.id}|}">
-        <div class="mb-3">
-            <label for="name" class="form-label">이름</label>
-            <input  type="text" class="form-control" id="name" th:name="name" th:value="${student.name}" >
-        </div>
 
-        <div class="mb-3" >
-            <label for="birth" class="form-label">생년월일</label>
-            <input type="text" class="form-control" id="birth" th:name="birth" th:value="${student.birth}">
-        </div>
+<!--    학생 정보-->
+    <div class="row">
+        <form class="col-md-8" method="post" th:action="@{|/student/modify/${student.id}|}">
+            <div class="mb-3">
+                <label for="name" class="form-label">이름</label>
+                <input type="text" class="form-control" id="name" th:name="name" th:value="${student.name}">
+            </div>
 
-        <div class="mb-3" >
-            <label for="yearAdmission" class="form-label">입학년도</label>
-            <input type="text" class="form-control" id="yearAdmission" th:name="yearAdmission" th:value="${student.yearAdmission}">
-        </div>
+            <div class="mb-3">
+                <label for="birth" class="form-label">생년월일</label>
+                <input type="text" class="form-control" id="birth" th:name="birth" th:value="${student.birth}">
+            </div>
 
-        <div class="mb-3" >
-            <label for="grade" class="form-label">학년</label>
-            <input type="text" class="form-control" id="grade" th:name="s_grade" th:value="${student.s_grade}">
-        </div>
+            <div class="mb-3">
+                <label for="yearAdmission" class="form-label">입학년도</label>
+                <input type="text" class="form-control" id="yearAdmission" th:name="yearAdmission"
+                       th:value="${student.yearAdmission}">
+            </div>
 
-        <div class="mb-3" >
-            <label for="ban" class="form-label">반</label>
-            <input type="text" class="form-control" id="ban" th:name="s_ban" th:value="${student.s_ban}">
-        </div>
+            <div class="mb-3">
+                <label for="grade" class="form-label">학년</label>
+                <input type="text" class="form-control" id="grade" th:name="s_grade" th:value="${student.s_grade}">
+            </div>
 
-        <div class="mb-3" >
-            <label for="number" class="form-label">번호</label>
-            <input type="text" class="form-control" id="number" th:name="s_number" th:value="${student.s_number}">
-        </div>
+            <div class="mb-3">
+                <label for="ban" class="form-label">반</label>
+                <input type="text" class="form-control" id="ban" th:name="s_ban" th:value="${student.s_ban}">
+            </div>
 
-        <input type="submit" value="수정하기" class="btn btn-primary my-2">
-    </form>
+            <div class="mb-3">
+                <label for="number" class="form-label">번호</label>
+                <input type="text" class="form-control" id="number" th:name="s_number"
+                       th:value="${student.s_number}">
+            </div>
+            <input type="submit" value="수정하기" class="btn btn-primary my-2">
+        </form>
+    </div>
+
 </div>
+
+<!--사진-->
+<form class="col-md-3 offset-md-1  card text"
+      style="height: 300px;"
+      th:action="@{|/student/fileUpload/${student.id}|}"
+      enctype="multipart/form-data"
+      method="post">
+    <img th:src="${student.fileName}" class="rounded mx-auto d-block" alt="사진" style="margin: auto">
+<!--         th:if="${student.idPhoto != null}">-->
+    <input multiple type="file" class="form-control" id="file" th:name="file">
+<!--    <label class="custom-file-lable" for="idPhoto"></label>-->
+    <button type="submit">사진저장</button>
+</form>
+
 <script>
 
 </script>

@@ -7,7 +7,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.zip.DataFormatException;
 
@@ -61,4 +63,13 @@ public class StudentController {
         return "redirect:/student/list";
     }
 
+    //사진파일 업로드
+    @PostMapping("/fileUpload/{id}")
+    public String fileUpload(@PathVariable Integer id, @ModelAttribute StudentDto dto, @RequestPart MultipartFile file)
+            throws DataFormatException, IOException {
+
+        studentService.fileUpload(id,file);
+//        studentService.getStudent(id);
+        return "redirect:/student/list";
+    }
 }

@@ -5,7 +5,10 @@ import com.example.stdntmgmtprog.entity.dto.StudentDto;
 import com.example.stdntmgmtprog.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 import java.util.zip.DataFormatException;
@@ -62,9 +65,30 @@ public class StudentService {
                 .s_number(dto.getS_number())
                 .name(dto.getName())
                 .yearAdmission(dto.getYearAdmission())
+                .fileName(dto.getFileName())
+                .fileOriName(dto.getFileName())
+                .fileUrl(dto.getFileUrl())
                 .build();
-
         studentRepository.save(std);
+    }
+
+    /**
+     * 사진 업로드
+     */
+    public void fileUpload(Integer id, MultipartFile file) throws IOException {
+
+        String oriName = file.getOriginalFilename();
+        String fileUrl = "C:\\projectFile\\stdntMgmtProg\\file\\" + oriName;
+        file.transferTo(new File(fileUrl));
+
+        Student std = Student.builder()
+                .id(id)
+                .fileName(file.getName())
+                .fileOriName(file.getOriginalFilename())
+                .fileUrl(fileUrl)
+                .build();
+        studentRepository.save(std);
+
 
     }
 }
