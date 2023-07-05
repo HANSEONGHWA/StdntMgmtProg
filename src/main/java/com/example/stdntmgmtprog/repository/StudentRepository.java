@@ -8,4 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface StudentRepository extends JpaRepository<Student, Integer>{
 
+
+
 }

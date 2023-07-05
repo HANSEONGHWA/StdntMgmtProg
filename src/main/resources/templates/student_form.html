@@ -10,7 +10,7 @@
 <div class="container my-3">
     <h5 class="my-3 border-bottom pb-2">학생상세정보</h5>
 
-<!--    학생 정보-->
+    <!--    학생 정보-->
     <div class="row">
         <form class="col-md-8" method="post" th:action="@{|/student/modify/${student.id}|}">
             <div class="mb-3">
@@ -50,18 +50,23 @@
 
 </div>
 
+<div class="modal-dialog modal-xl">
+
+</div>
+
+
 <!--사진-->
 <form class="col-md-3 offset-md-1  card text"
       style="height: 300px;"
       th:action="@{|/student/fileUpload/${student.id}|}"
       enctype="multipart/form-data"
       method="post">
-    <img th:src="${student.fileName}" class="rounded mx-auto d-block" alt="사진" style="margin: auto">
-<!--         th:if="${student.idPhoto != null}">-->
+    <img th:src="|/img/${student.getFileOriName()}|" class="rounded mx-auto d-block"
+         alt="사진" style="margin: auto" th:name="fileUrl">
     <input multiple type="file" class="form-control" id="file" th:name="file">
-<!--    <label class="custom-file-lable" for="idPhoto"></label>-->
     <button type="submit">사진저장</button>
 </form>
+
 
 <script>
 

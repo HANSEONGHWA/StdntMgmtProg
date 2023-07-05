@@ -6,6 +6,7 @@ import com.example.stdntmgmtprog.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import org.thymeleaf.util.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -76,19 +77,31 @@ public class StudentService {
      * 사진 업로드
      */
     public void fileUpload(Integer id, MultipartFile file) throws IOException {
-
+        String fileName = file.getName();
         String oriName = file.getOriginalFilename();
-        String fileUrl = "C:\\projectFile\\stdntMgmtProg\\file\\" + oriName;
+        String fileUrl = "C:\\projectFile\\stdntMgmtProg\\src\\main\\resources\\static\\img\\" + oriName;
         file.transferTo(new File(fileUrl));
+        Optional<Student> student = studentRepository.findById(id);
 
-        Student std = Student.builder()
-                .id(id)
-                .fileName(file.getName())
+        if(student.isPresent()){
+            Student std1 = student.get();
+            System.out.println("aaaa"+oriName);
+            Student std2 = Student.builder()
+                .id(std1.getId())
+                .birth(std1.getBirth())
+                .s_grade(std1.getS_grade())
+                .s_ban(std1.getS_ban())
+                .s_number(std1.getS_number())
+                .name(std1.getName())
+                .yearAdmission(std1.getYearAdmission())
+                .fileName(fileName)
                 .fileOriName(file.getOriginalFilename())
                 .fileUrl(fileUrl)
                 .build();
-        studentRepository.save(std);
-
-
+            studentRepository.save(std2);
+        }else{
+            //오류메시지
+        }
     }
+
 }

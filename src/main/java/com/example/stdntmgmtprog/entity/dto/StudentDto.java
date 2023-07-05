@@ -29,14 +29,14 @@ public class StudentDto {
 
 
     public StudentDto(Student student) {
-        this.name = student.getName();
-        this.birth = student.getBirth();
-        this.s_grade = student.getS_grade();
-        this.s_ban = student.getS_ban();
-        this.s_number = student.getS_number();
-        this.yearAdmission = student.getYearAdmission();
-        this.fileName = student.getFileName();
-        this.fileOriName = student.getFileOriName();
+            this.name = student.getName();
+            this.birth = student.getBirth();
+            this.s_grade = student.getS_grade();
+            this.s_ban = student.getS_ban();
+            this.s_number = student.getS_number();
+            this.yearAdmission = student.getYearAdmission();
+            this.fileName = student.getFileName();
+            this.fileOriName = student.getFileOriName();
         this.fileUrl = student.getFileUrl();
     }
 

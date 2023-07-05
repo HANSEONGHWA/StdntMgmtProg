@@ -53,6 +53,7 @@ public class StudentController {
     @GetMapping("/modify/{id}")
     public String detail(@PathVariable("id") Integer id, Model model) throws DataFormatException {
         Student student = studentService.getStudent(id);
+        System.out.println(student.getFileUrl());
         model.addAttribute("student", student);
         return "student_form";
     }
@@ -63,13 +64,22 @@ public class StudentController {
         return "redirect:/student/list";
     }
 
+    @GetMapping("/fileUpload/{id}")
+    public String fileUpload(@PathVariable("id") Integer id, @ModelAttribute StudentDto dto, Model model) throws DataFormatException {
+        Student student = studentService.getStudent(id);
+//        model.addAttribute("student", student);
+        return "test";
+    }
     //사진파일 업로드
     @PostMapping("/fileUpload/{id}")
-    public String fileUpload(@PathVariable Integer id, @ModelAttribute StudentDto dto, @RequestPart MultipartFile file)
+    public String fileUpload(@PathVariable Integer id, Model model, @RequestPart MultipartFile file)
             throws DataFormatException, IOException {
 
         studentService.fileUpload(id,file);
-//        studentService.getStudent(id);
-        return "redirect:/student/list";
+        System.out.println("file = " + file);
+        Student student = studentService.getStudent(id);
+        System.out.println(student.getFileUrl());
+        model.addAttribute("student", student);
+        return "redirect:/student/";
     }
 }
