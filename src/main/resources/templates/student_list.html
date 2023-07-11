@@ -62,7 +62,7 @@
                 <td th:text="${student.yearAdmission}"></td>
                 <td th:text="${student.s_grade}"></td>
                 <td th:text="${student.s_ban}"></td>
-                <td><a th:href="@{|/student/modify/${student.id}|}" th:text="${student.name}"></a> </td>
+                <td><a th:href="@{|/student/detail/${student.id}|}" th:text="${student.name}"></a></td>
             </tr>
             </tbody>
         </table>

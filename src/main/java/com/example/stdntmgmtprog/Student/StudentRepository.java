@@ -1,4 +1,4 @@
-package com.example.stdntmgmtprog.repository;
+package com.example.stdntmgmtprog.Student;
 
 import com.example.stdntmgmtprog.entity.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
