@@ -1,4 +1,4 @@
-package com.example.stdntmgmtprog.entity.dto;
+package com.example.stdntmgmtprog.Student;
 
 import com.example.stdntmgmtprog.entity.Student;
 import lombok.*;
