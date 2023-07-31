@@ -1,7 +1,6 @@
 package com.example.stdntmgmtprog.Student;
 
 import com.example.stdntmgmtprog.entity.Student;
-import com.example.stdntmgmtprog.entity.dto.StudentDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -131,4 +130,25 @@ public class StudentService {
     public void delete(Student dto){
     studentRepository.delete(dto);
     }
+
+    /**
+     * select 태그 option
+     */
+    public List<Student>selectSearch(){
+
+        List<Student> select = studentRepository.findAll();
+//        List<Student> select = studentRepository.findByYearAdmission();
+        return select;
+    }
+
+    /**
+     * 검색
+     */
+
+//    public List<Student> search(String yearAdmission){
+//
+//        List<Student> searchStd = studentRepository.findByYearAdmission(yearAdmission);
+//
+//        return searchStd;
+//    }
 }

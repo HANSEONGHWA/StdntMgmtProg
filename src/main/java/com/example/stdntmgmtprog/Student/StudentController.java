@@ -1,8 +1,6 @@
 package com.example.stdntmgmtprog.Student;
 
 import com.example.stdntmgmtprog.entity.Student;
-import com.example.stdntmgmtprog.entity.dto.StudentDto;
-import com.example.stdntmgmtprog.Student.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.zip.DataFormatException;
 
 @Controller
@@ -21,9 +20,13 @@ public class StudentController {
     private final StudentService studentService;
 
     @GetMapping("/list")
-    public String list(Model model) {
+    public String list( Model model) {
         List<Student> students = studentService.getList();
+        List<Student> select = studentService.selectSearch();
         model.addAttribute("students", students);
+        model.addAttribute("select", select);
+
+
         return "student_list";
     }
 
@@ -101,5 +104,18 @@ public class StudentController {
         studentService.delete(student);
         return "redirect:/student/";
     }
+
+
+
+//    /**
+//     * 검색
+//     */
+//    @GetMapping("/search")
+//    public String search(@RequestParam String yearAdmission, Model model) {
+//        List<Student> searchStd = studentService.search(yearAdmission);
+//        model.addAttribute("students", searchStd);
+//        System.out.println("searchStd = " + searchStd);
+//        return "student_list";
+//    }
 
 }
