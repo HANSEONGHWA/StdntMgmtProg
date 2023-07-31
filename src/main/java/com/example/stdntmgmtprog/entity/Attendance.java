@@ -1,9 +1,6 @@
 package com.example.stdntmgmtprog.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-
+import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
 public class Attendance {
